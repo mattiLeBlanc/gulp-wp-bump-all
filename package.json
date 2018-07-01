@@ -1,0 +1,30 @@
+{
+  "name": "gulp-wp-bump-all",
+  "version": "0.1.0",
+  "description": "Gulp task to bump your scripts and styles versions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wordpress",
+    "themes",
+    "functions.php",
+    "wp_enqueue_style",
+    "wp_enqueue_script",
+    "version",
+    "versioning",
+    "revision",
+    "wp"
+  ],
+  "author": "https://github.com/mattiLeBlanc",
+  "license": "MIT",
+  "devDependencies": {
+    "crypto": "^1.0.1",
+    "fs": "0.0.1-security",
+    "gulp": "^3.9.1",
+    "gutil": "^1.6.4",
+    "path": "^0.12.7",
+    "stream": "0.0.2"
+  }
+}
