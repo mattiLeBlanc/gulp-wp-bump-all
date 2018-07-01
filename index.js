@@ -1,15 +1,4 @@
-/*
-  Based on gulp-wp-bump: However I think the person who wrote that plugin didn't understand stream either.
-  I wanted to be able to use multiple files to be bumped. However, when I use streams a done in gulp-wp-bump, only one file would be saved.
-  I have no clue how to use stream but it seems obvious that the stream is holding whatever was used before in the gulp pipe.
-  Since we are changing files outside of the pipe, the stream seems to be uncessary.
-  So I just call transform (because I don't know what else to call) and return, while the FS changes the files you passed in as arguments.
-
-  Please refactor if you know what you are doing :)!
-*/
-
 var gulp = require( "gulp" );
-var stream = require( "stream" );
 var path = require( "path" );
 var fs = require( "fs" );
 var gutil = require( "gulp-util" );
@@ -34,13 +23,6 @@ module.exports = function ( filename, options ) {
     handleFile( file );
   } );
 
-  // Note: I have no idea what I am doing with this stream. All I know that if I return a stream gulp will not complain
-  // and it doesn't seem to interfere with the previous gulp pipes.
-  var gulpStream = new stream.Transform( { objectMode: true } );
-  gulpStream._transform = function ( file, unused, callback ) {
-    callback();
-  }
-  return gulpStream;
 }
 
 function handleFile( filename ) {
@@ -68,7 +50,7 @@ function handleFile( filename ) {
 
       if ( revisedFile == data ) {
         if ( !opts.silent ) {
-          gutil.log( `gulp-wp-bump-all: No change made to '${filename}'` );
+          gutil.log( `gulp-wp-bump-all: No change made to '${ filename }'` );
         }
       }
 
@@ -83,7 +65,7 @@ function handleFile( filename ) {
 
   function bumpVersion( data ) {
 
-    const regex = new RegExp( `(?:(?:${applyFilterKeys()})\\()(.*)\\)\\\s*;`, 'gm' );
+    const regex = new RegExp( `(?:(?:${ applyFilterKeys() })\\()(.*)\\)\\\s*;`, 'gm' );
 
     let m;
     //
