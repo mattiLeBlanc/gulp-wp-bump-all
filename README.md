@@ -10,7 +10,7 @@ So I made this possible for my own project.
 
 ## Install
 
-Install via npm
+Install via [npm](https://www.npmjs.com/package/gulp-wp-bump-all)
 
     npm i gulp-wp-bump-all -D
 
