@@ -1,10 +1,14 @@
 {
   "name": "gulp-wp-bump-all",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Gulp task to bump your scripts and styles versions",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mattiLeBlanc/gulp-wp-bump-all"
   },
   "keywords": [
     "wordpress",
