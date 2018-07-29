@@ -62,15 +62,15 @@ function handleFile( filename ) {
     }
   } );
 
-
   function bumpVersion( data ) {
 
     const regex = new RegExp( `(?:(?:${ applyFilterKeys() })\\()(.*)\\)\\\s*;`, 'gm' );
+    const arrayRegex = new RegExp( 'array\\([^)]*\\)', 'g' );
 
     let m;
     //
     var token = crypto.randomBytes( 7 ).toString( "hex" );
-    var source;
+    var original;
     while ( ( m = regex.exec( data ) ) !== null ) {
       // This is necessary to avoid infinite loops with zero-width matches
       if ( m.index === regex.lastIndex ) {
@@ -79,9 +79,22 @@ function handleFile( filename ) {
 
       // The result can be accessed through the `m`-variable.
       m.forEach( ( match, groupIndex ) => {
+        var result;
         if ( groupIndex === 1 ) {
-          source = match;
-          let parts = match.split( "," );
+          original = match;
+
+          // try to match the depedency array string part
+          //
+          var arrayMatch = match.match( arrayRegex );
+          if ( arrayMatch ) {
+            // replace the comma's in the dependency array for | so that we can do the split below on comma
+            //
+            var arrayValue = arrayMatch[ 0 ].replace( /,/g, '|' );
+            match = match.replace( arrayMatch[ 0 ], arrayValue );
+          }
+
+          let parts = match.split( ',' );
+
           if ( parts.length >= 4 ) {
             parts[ 3 ] = applyToken( parts[ 3 ], token );
           }
@@ -96,12 +109,17 @@ function handleFile( filename ) {
             console.log( `source [${ source }]` );
             console.log( `replace [${ parts.join().trim() }]` );
           }
-          data = data.replace( source, ` ${ parts.join().trim() } ` );
+          result  = parts.join().trim();
+          if ( arrayMatch ) {
+            result = result.replace( arrayValue,  arrayMatch[ 0 ] );
+          }
+          data = data.replace( original, ` ${ result } ` );
         }
       } );
     }
     return data;
   }
+
 
   function applyToken( part, token ) {
     let value = part.trim();

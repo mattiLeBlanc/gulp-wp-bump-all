@@ -58,4 +58,7 @@ I am only bumping if:
 You can define any filename as long as the path is correct. If you do not define filter `keys`,  fallback will be `[ 'wp_enqueue_style', 'wp_enqueue_style]`
 
 
+## Changelog
 
+*0.3.0*
+Rewrote the regex replacement function to support dependency array with mulitple values

@@ -1,6 +1,6 @@
 {
   "name": "gulp-wp-bump-all",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Gulp task to bump your scripts and styles versions",
   "main": "index.js",
   "scripts": {
