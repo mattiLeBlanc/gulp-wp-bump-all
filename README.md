@@ -6,6 +6,7 @@ So I made this possible for my own project.
 
     Note: I am not understanding the bit so I decided (since the bump has nothing to do with the stream anyway)
  	to remove the steaming bit. Because of this, you have to run `bump` as a separate task now.
+
 ## Install
 
 Install via [npm](https://www.npmjs.com/package/gulp-wp-bump-all)
@@ -61,4 +62,4 @@ You can define any filename as long as the path is correct. If you do not define
 ## Changelog
 
 *0.3.0*
-Rewrote the regex replacement function to support dependency array with mulitple values
+I have rewritten the regex replacement function to support dependency arrays with mulitple values. This wasn't possible before because my scenario didn't require it. Silly, of course.
