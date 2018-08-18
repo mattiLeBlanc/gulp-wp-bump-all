@@ -4,7 +4,7 @@ Inspired by [gulp-wp-bump](https://www.npmjs.com/package/gulp-wp-bump), which di
 
 So I made this possible for my own project.
 
-    Note: I am really accrossthe streaming stuff in Gulp so I decided (since the bump has nothing to do with the stream anyway)
+    Note: I am really accross the streaming stuff in Gulp so I decided (since the bump has nothing to do with the stream anyway)
  	to remove this. Because of this, you have to run `bump` as a separate task.
 
 ## Install
